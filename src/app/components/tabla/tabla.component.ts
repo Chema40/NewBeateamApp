@@ -41,7 +41,7 @@ export class TablaComponent implements OnInit{
 
   getTooltipText(dato:any){
     return `Obs. linea: ${dato.observacion}
-            Obs. pedido:
+            Obs. pedido: 
             Pedido por: ${dato.usuario}`
   }
 }
