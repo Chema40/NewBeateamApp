@@ -16,20 +16,6 @@ export interface Tareas {
     data: any
 }
 
-export interface Filtro {
-    cliente: string;
-    fecha: Fecha;
-    referencia: string;
-    usuario: string;
-    tipo: string;
-    estados?: string[];
-}
-
-export interface Fecha{
-    inicio: string;
-    fin: string;
-}
-
 export interface Tarea{
     alias_cliente: string,
     cantidad: number,
@@ -42,18 +28,6 @@ export interface Tarea{
     referencia: string,
     tipo: string,
     usuario: string,
-}
-
-export interface Consulta{
-    fecha?: {
-        inicio?: string,
-        final?: string,
-    },
-    referencia?: string,
-    cliente?:string,
-    usuario?:string,
-    estado?: string[],
-    tipo?:string,
 }
 
 export interface Datos {
@@ -69,12 +43,6 @@ export interface Datos {
     codigo_cliente?: string;
     alias_cliente?:  string;
 
-}
-
-export interface Respuesta{
-    status?: number;
-    message?: string;
-    data: Datos[];
 }
 
 export interface Resp {

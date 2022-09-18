@@ -16,7 +16,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 //Internal Services
-import { TareaService } from './services/tarea.service';
 import { ApiService } from './services/api.service';
 import { FiltroComponent } from './components/filtro/filtro.component';
 import { TablaComponent } from './components/tabla/tabla.component';
@@ -41,7 +40,6 @@ import { TablaComponent } from './components/tabla/tabla.component';
   ],
   providers: [
     ApiService,
-    TareaService
   ],
   bootstrap: [AppComponent]
 })

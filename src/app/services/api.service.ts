@@ -2,14 +2,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { Datos, Filtro, Respuesta, Consulta, Resp } from '../interfaces/ApiResponse.interface';
 
 //External imports
 import * as CryptoJS from 'crypto-js';
 
 //Internal imports
 import { url, key} from "../../environments/environment"
-import { Estados, Tipos, Tareas} from "../interfaces/ApiResponse.interface"
+import { Estados, Tipos, Tareas, Resp} from "../interfaces/ApiResponse.interface"
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +37,7 @@ export class ApiService {
     usuario: '',
   };
 
-  getEstados(){
+  getEstados():Observable<Tareas>{
     let headers = new HttpHeaders()
       .set('funcion', 'getEstados')
       .set('X-Auth', this.encrip);
@@ -46,7 +45,7 @@ export class ApiService {
     return this.http.get<Estados>(url, {headers})
   }
 
-  getTipos(){
+  getTipos():Observable<Tareas>{
     let headers = new HttpHeaders()
       .set('funcion', 'getTipos')
       .set('X-Auth', this.encrip); 
@@ -54,17 +53,12 @@ export class ApiService {
     return this.http.get<Tipos>(url, {headers})
   }
 
-  getTareas(){
+  getTareas():Observable<Tareas>{
        let headers = new HttpHeaders()
       .set('funcion', 'getTareas')
       .set('X-Auth', this.encrip); 
 
       return this.http.get<Tareas>(url, {headers})
-  }
-
-
-  reset(){
-    this.getTareas().subscribe(resp => console.log(resp));
   }
 
   getFiltroObservable(){
@@ -74,11 +68,11 @@ export class ApiService {
   enviar(filtros:Resp){
     this.filtros.next(filtros);
     this.fil = filtros;
-    //this.filtrar(this.fil);
   }
 
-  filtrar(filtros:Resp){
+  filtrar(filtros:Resp):Observable<Tareas>{
 
+    //Reseteo de filtros
     if(filtros.fecha1 == null)
     {
       filtros.fecha1 = "";
@@ -112,6 +106,8 @@ export class ApiService {
 
     if(filtros.tipo === null){
       filtros.tipo = "Todos";
+    }else{
+      this.fil.tipo = filtros.tipo
     }
 
     if(filtros.estado === null){
@@ -119,16 +115,7 @@ export class ApiService {
     }else{
       this.fil.estado= filtros.estado;
     }
-    
 
-
-
-
-    // if(filtros.tipo == 'Todos'){
-    //        filtros.tipo = "";
-    // }else{
-    //        this.fil.tipo = "";
-    // }
 
     let headers = new HttpHeaders()
     .set('funcion', 'getTareas')
@@ -165,40 +152,6 @@ export class ApiService {
         params = params.append("estado[]", estado)
       })
     }
-
-    console.log(params);
-    
-    // .set("usuario", filtros.usuario)
-    // .set("tipo", filtros.tipo);
-   
-    // .set("estados", filtros.estados);
-
-    // if(filtros.fecha1 ==""){
-    //   params = params.set("fecha[inicio]", "")
-    // }else{
-    //   params = params.set("fecha[inicio]", filtros.fecha1)
-    // }
-
-    // if(filtros.fecha2 ==""){
-    //   params = params.set("fecha[fin]", "")
-    // }else{
-    //   params = params.set("fecha[fin]", filtros.fecha2)
-    // }
-
-    // if(filtros.estado == [])
-    // {
-    //   params = params.set("estado","");
-    // }else{
-    //   this.consulta.estado.forEach((estado:string)=>{
-    //     params = params.append("estado[]", estado)
-    //   })
-    // }
-
-    // if(filtros.tipo == ""){
-    //   params = params.set("tipo","");
-    // }else{
-    //   params = params.set("tipo[]", this.consulta.tipo[0] );
-    // }
 
     return this.http.get<Tareas>(url,{headers, params})
   }

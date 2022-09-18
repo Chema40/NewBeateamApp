@@ -9,11 +9,9 @@ import { Datos, Resp } from '../../interfaces/ApiResponse.interface';
 })
 export class TablaComponent implements OnInit{
 
-  aux: Datos [] = [];
   datos: Datos[] = [];
   linea: number = 0;
   config: any;
-  tooltip: string =''
 
   constructor(private api:ApiService) {
       this.config = {
@@ -27,10 +25,8 @@ export class TablaComponent implements OnInit{
     this.api.getFiltroObservable().subscribe(filtros => this.filtrar(filtros));
 
     this.api.getTareas().subscribe(datos =>{
-            // this.aux = datos.data; 
-            // this.datos = this.aux;
             this.datos = datos.data;
-            this.linea=this.aux.length;
+            this.linea=this.datos.length;
           });
 
   }

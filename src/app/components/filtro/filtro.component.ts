@@ -1,10 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { TareaService } from '../../services/tarea.service';
 import { ApiService } from '../../services/api.service';
-import { FiltroService } from '../../services/filtro.service';
 import { Resp } from 'src/app/interfaces/ApiResponse.interface';
-import { TablaComponent } from '../tabla/tabla.component';
 
 
 @Component({
