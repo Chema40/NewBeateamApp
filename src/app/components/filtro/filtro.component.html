@@ -9,7 +9,7 @@
             <input type="text"
                    class="form-control"
                    formControlName="cliente">
-                   <button class="btn btn-outline-secondary btn btn-outline-danger" type="reset" id="button-addon2">X</button>
+                   <button class="btn btn-outline-secondary btn btn-outline-danger" type="button" id="button-addon2" (click)='this.formulario.controls["cliente"].setValue("")'>X</button>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
                   class="form-control"
                   formControlName="referencia">
                   <button class="btn btn-outline-secondary btn btn-outline-danger"
-                  type="reset" id="button-addon2">X</button>
+                  type="button" id="button-addon2" (click)='this.formulario.controls["referencia"].setValue("")'>X</button>
         </div>
        </div>
      </div>
@@ -37,7 +37,7 @@
              <input type="text"
                     class="form-control"
                     formControlName="usuario">
-                    <button class="btn btn-outline-secondary btn btn-outline-danger" type="reset" id="button-addon2">X</button>
+                    <button class="btn btn-outline-secondary btn btn-outline-danger" type="button" id="button-addon2" (click)='this.formulario.controls["usuario"].setValue("")' >X</button>
          </div>
        </div>
      </div>
@@ -52,7 +52,7 @@
                   placeholder="From - To" formControlName="fecha1" />  
           <input id="secondDateRange" class="form-control" type="date" name="dateRange"
                   placeholder="From - To" formControlName="fecha2" /> 
-                  <button class="btn btn-outline-secondary btn btn-outline-danger" type="reset" id="button-addon2">X</button>
+                  <button class="btn btn-outline-secondary btn btn-outline-danger" type="button" id="button-addon2" (click)='this.formulario.controls["fecha1"].setValue(""); this.formulario.controls["fecha2"].setValue("")'>X</button>
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@
                <option selected>Todos</option>
                <option *ngFor="let tipo of tipos"> {{tipo}}</option>
            </select>    
-           <button class="btn btn-outline-secondary btn btn-outline-danger" type="reset" id="button-addon2" >X</button>
+           <button class="btn btn-outline-secondary btn btn-outline-danger" type="button" id="button-addon2" (click)='this.formulario.controls["tipo"].setValue("Todos")'>X</button>
        </div>
      </div>
    </div>

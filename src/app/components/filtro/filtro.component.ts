@@ -22,17 +22,7 @@ export class FiltroComponent implements OnInit {
 
    tipos:string[]=[];
    estados:string[]=[];
-   filtroReset:Resp = {
-    cliente: '',
-    estado: [],
-    fecha1: '',
-    fecha2: '',
-    referencia: '',
-    tipo: '',
-    usuario: '',
-   }
-
-
+   
   constructor(private fb:FormBuilder,
               private api:ApiService) {}
 
@@ -64,8 +54,6 @@ export class FiltroComponent implements OnInit {
 
   //enviar filtros con el servicio
   enviarFiltros(filtros: Resp){
-    console.log(filtros);
     this.api.enviar(filtros);
   }
-
 }
