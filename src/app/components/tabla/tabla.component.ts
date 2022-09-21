@@ -57,7 +57,8 @@ export class TablaComponent implements OnInit{
       if(alturaVentana <= this.SD){
         this.config.itemsPerPage = 1;
       }else if(alturaVentana >= this.SD && alturaVentana < this.QuarterHD){
-        this.config.itemsPerPage = 10;
+        this.numeroFilas = 51
+        this.config.itemsPerPage = Math.floor(this.altoVentana / this.numeroFilas); 
       }else if(alturaVentana >= this.QuarterHD && alturaVentana < this.HD){
         this.numeroFilas = 50
         this.config.itemsPerPage = Math.floor(this.altoVentana / this.numeroFilas); 
