@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, AfterViewInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Datos, Resp } from '../../interfaces/ApiResponse.interface';
 
@@ -7,7 +7,7 @@ import { Datos, Resp } from '../../interfaces/ApiResponse.interface';
   selector: 'app-tabla',
   templateUrl: './tabla.component.html',
 })
-export class TablaComponent implements OnInit{
+export class TablaComponent implements OnInit, AfterViewInit{
 
   datos: Datos[] = [];
   linea: number = 0;
@@ -40,13 +40,15 @@ export class TablaComponent implements OnInit{
             this.linea=this.datos.length;
           });
     this.altoVentana = window.innerHeight
-
-
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event:any) {
     this.altoVentana = window.innerHeight
+    this.calcularFilas(this.altoVentana)
+  }
+
+  ngAfterViewInit(): void {
     this.calcularFilas(this.altoVentana)
   }
 
